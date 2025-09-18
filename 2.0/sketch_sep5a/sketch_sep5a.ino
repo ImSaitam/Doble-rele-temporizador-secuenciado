@@ -26,8 +26,8 @@ void loop() {
   int p0 = analogRead(A0);
   int p1 = analogRead(A1);
 
-  int tp1 = map(p0, 0, 1023, 0, 5000);
-  int tp2 = map(p1, 0, 1023, 0, 5000);
+  int tp1 = map(p0, 0, 1023, 0, 4000);
+  int tp2 = map(p1, 0, 1023, 0, 4000);
 
   bool estadoSwitch1 = (digitalRead(switchPiston1) == LOW);
   bool estadoSwitch2 = (digitalRead(switchPiston2) == LOW);
@@ -43,6 +43,7 @@ void loop() {
       pistonPrendido = 1;
       delay(tp1);
       digitalWrite(piston1, HIGH);
+      delay(tp1 * 0.95);
       primeraVez = false;
     }
     return;
@@ -54,7 +55,7 @@ void loop() {
     digitalWrite(piston2, LOW);
     delay(tp2);
     digitalWrite(piston2, HIGH);
-
+    delay(tp2 * 0.95);
     if (apagadoPendiente) {
       apagadoPendiente = false;
       primeraVez = true;
@@ -75,7 +76,7 @@ void loop() {
     digitalWrite(piston1, LOW);
     delay(tp1);
     digitalWrite(piston1, HIGH);
-
+    delay(tp1 * 0.95);
     pistonPrendido = 1;
   }
 }
